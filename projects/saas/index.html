@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ledgerly — Invoicing that gets you paid faster</title>
+<meta name="description" content="Send beautiful invoices, automate reminders and get paid faster. Built for freelancers and small agencies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07080d; --bg2: #0e1018; --card: #12151f; --line: #222738; --ink: #f2f4fa; --muted: #8d95ab;
+    --violet: #8b5cf6; --cyan: #22d3ee; --green: #34d399; --radius: 18px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font: 400 16px/1.6 "Inter Tight", system-ui, sans-serif; }
+  h1, h2, h3 { line-height: 1.08; letter-spacing: -.03em; }
+  a { color: inherit; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  .demo-bar { background: #1b1f2c; color: var(--muted); font-size: 13px; text-align: center; padding: 8px 16px; }
+  .demo-bar a { color: #fff; font-weight: 700; }
+  .grad { background: linear-gradient(90deg, var(--violet), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  header { position: sticky; top: 0; z-index: 10; background: rgba(7,8,13,.75); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  nav { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; text-decoration: none; }
+  .logo b { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--violet), var(--cyan)); }
+  .nav-links { display: flex; gap: 30px; list-style: none; padding: 0; font-size: 15px; color: var(--muted); }
+  .nav-links a { text-decoration: none; } .nav-links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 12px; font: 600 15px "Inter Tight", sans-serif; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .15s, filter .15s; }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+  .btn-main { background: var(--ink); color: var(--bg); }
+  .btn-glow { background: linear-gradient(135deg, var(--violet), #6d28d9); color: #fff; box-shadow: 0 10px 30px -10px var(--violet); }
+  .btn-dim { background: var(--card); border-color: var(--line); color: var(--ink); }
+
+  .hero { position: relative; text-align: center; padding: 100px 0 60px; overflow: hidden; }
+  .hero::before { content: ""; position: absolute; width: 900px; height: 600px; left: 50%; top: -260px; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(139,92,246,.35), transparent 70%); pointer-events: none; }
+  .chip { position: relative; display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); padding: 6px 14px 6px 6px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg2); }
+  .chip span { background: rgba(52,211,153,.15); color: var(--green); font-weight: 700; font-size: 12px; padding: 3px 10px; border-radius: 999px; }
+  .hero h1 { position: relative; font-size: clamp(42px, 7.5vw, 84px); font-weight: 800; max-width: 900px; margin: 24px auto 22px; }
+  .hero p { position: relative; color: var(--muted); font-size: clamp(17px, 2vw, 20px); max-width: 600px; margin: 0 auto; }
+  .hero .ctas { position: relative; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 34px; }
+  .hero small { position: relative; display: block; margin-top: 16px; color: var(--muted); font-size: 13px; }
+
+  .mock { position: relative; margin: 64px auto 0; max-width: 940px; border-radius: 22px; padding: 10px; background: linear-gradient(180deg, var(--line), transparent); }
+  .mock-inner { background: var(--bg2); border-radius: 16px; border: 1px solid var(--line); display: grid; grid-template-columns: 200px 1fr; min-height: 380px; text-align: left; overflow: hidden; }
+  .side { border-right: 1px solid var(--line); padding: 20px 14px; display: grid; gap: 6px; align-content: start; font-size: 14px; color: var(--muted); }
+  .side div { padding: 8px 12px; border-radius: 9px; } .side .on { background: var(--card); color: var(--ink); }
+  .main { padding: 24px; display: grid; gap: 18px; align-content: start; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+  .stat small { color: var(--muted); font-size: 12px; } .stat strong { display: block; font-size: 22px; }
+  .stat em { font-style: normal; font-size: 12px; color: var(--green); }
+  .inv { background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+  .inv div { display: grid; grid-template-columns: 1.4fr 1fr 1fr auto; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 14px; align-items: center; }
+  .inv div:last-child { border: 0; } .inv .h { color: var(--muted); font-size: 12px; }
+  .st { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+  .paid { background: rgba(52,211,153,.14); color: var(--green); } .due { background: rgba(250,204,21,.14); color: #facc15; } .late { background: rgba(248,113,113,.14); color: #f87171; }
+
+  section { padding: 100px 0; }
+  .head { text-align: center; max-width: 640px; margin: 0 auto 52px; }
+  .eyebrow { color: var(--violet); font-weight: 700; font-size: 14px; }
+  .head h2 { font-size: clamp(32px, 4.6vw, 52px); margin: 10px 0 14px; }
+  .head p { color: var(--muted); font-size: 18px; }
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .feature { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .feature .ico { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: rgba(139,92,246,.14); color: var(--violet); margin-bottom: 18px; }
+  .feature h3 { font-size: 19px; margin-bottom: 8px; } .feature p { color: var(--muted); font-size: 15px; }
+
+  .toggle { display: inline-flex; gap: 4px; padding: 4px; border-radius: 12px; background: var(--bg2); border: 1px solid var(--line); margin-top: 24px; }
+  .toggle button { border: 0; background: transparent; color: var(--muted); font: 600 14px "Inter Tight", sans-serif; padding: 9px 18px; border-radius: 9px; cursor: pointer; }
+  .toggle button[aria-pressed="true"] { background: var(--card); color: var(--ink); }
+  .toggle .save { color: var(--green); font-size: 12px; margin-left: 4px; }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+  .plan { background: var(--bg2); border: 1px solid var(--line); border-radius: 22px; padding: 32px; display: flex; flex-direction: column; }
+  .plan.pop { border-color: var(--violet); background: linear-gradient(180deg, rgba(139,92,246,.12), var(--bg2) 40%); position: relative; }
+  .plan.pop::before { content: "Most popular"; position: absolute; top: -12px; left: 32px; background: var(--violet); color: #fff; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+  .plan h3 { font-size: 20px; } .plan .desc { color: var(--muted); font-size: 15px; margin: 4px 0 20px; }
+  .amount { font-size: 48px; font-weight: 800; letter-spacing: -.04em; } .amount small { font-size: 16px; color: var(--muted); font-weight: 500; letter-spacing: 0; }
+  .plan ul { list-style: none; padding: 0; margin: 24px 0 30px; display: grid; gap: 10px; font-size: 15px; flex: 1; }
+  .plan li::before { content: "✓"; color: var(--green); font-weight: 800; margin-right: 10px; }
+
+  .faq { max-width: 760px; margin: 0 auto; }
+  details { border-bottom: 1px solid var(--line); padding: 22px 0; }
+  summary { cursor: pointer; font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; gap: 20px; }
+  summary::after { content: "+"; color: var(--muted); font-size: 24px; line-height: 1; transition: transform .2s; }
+  details[open] summary::after { transform: rotate(45deg); }
+  details p { color: var(--muted); margin-top: 12px; }
+
+  .final { text-align: center; border-radius: 30px; padding: 80px 24px; background: radial-gradient(ellipse at top, rgba(139,92,246,.3), transparent 60%), var(--bg2); border: 1px solid var(--line); }
+  .final h2 { font-size: clamp(34px, 5vw, 56px); max-width: 700px; margin: 0 auto 16px; }
+  .final p { color: var(--muted); margin-bottom: 30px; }
+  footer { padding: 40px 0; color: var(--muted); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+  @media (max-width: 900px) {
+    .features, .plans { grid-template-columns: 1fr 1fr; }
+    .mock-inner { grid-template-columns: 1fr; } .side { display: none; }
+  }
+  @media (max-width: 640px) {
+    .nav-links, nav .btn-dim { display: none; }
+    section { padding: 70px 0; } .hero { padding: 70px 0 40px; }
+    .features, .plans, .stats { grid-template-columns: 1fr; }
+    .inv div { grid-template-columns: 1fr auto; } .inv div > :nth-child(2), .inv div > :nth-child(3) { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="demo-bar">Concept landing page for a fictional product · <a href="../../index.html">← Back to portfolio</a></div>
+
+<header>
+  <nav class="wrap">
+    <a class="logo" href="#"><b></b>Ledgerly</a>
+    <ul class="nav-links"><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul>
+    <div style="display:flex;gap:10px"><a class="btn btn-dim" href="#">Log in</a><a class="btn btn-main" href="#pricing">Start free</a></div>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <span class="chip"><span>New</span>Automatic payment reminders are here</span>
+      <h1>Invoicing that gets you <span class="grad">paid faster.</span></h1>
+      <p>Create professional invoices in seconds, let Ledgerly chase late payments for you, and see exactly what you're owed — all in one place.</p>
+      <div class="ctas"><a class="btn btn-glow" href="#pricing">Start free — no card needed</a><a class="btn btn-dim" href="#features">See how it works</a></div>
+      <small>Free plan forever · Cancel anytime</small>
+
+      <div class="mock" aria-hidden="true">
+        <div class="mock-inner">
+          <div class="side"><div class="on">Dashboard</div><div>Invoices</div><div>Clients</div><div>Reminders</div><div>Reports</div><div>Settings</div></div>
+          <div class="main">
+            <div class="stats">
+              <div class="stat"><small>Paid this month</small><strong>₹2,48,500</strong><em>↑ 18% vs last month</em></div>
+              <div class="stat"><small>Outstanding</small><strong>₹86,200</strong><em>4 invoices</em></div>
+              <div class="stat"><small>Avg. time to pay</small><strong>6.2 days</strong><em>↓ 3 days faster</em></div>
+            </div>
+            <div class="inv">
+              <div class="h"><span>Client</span><span>Invoice</span><span>Amount</span><span>Status</span></div>
+              <div><span>Northwind Studio</span><span>#INV-1042</span><span>₹45,000</span><span class="st paid">Paid</span></div>
+              <div><span>Bluebird Media</span><span>#INV-1043</span><span>₹28,500</span><span class="st due">Due in 3d</span></div>
+              <div><span>Pixel & Co.</span><span>#INV-1039</span><span>₹12,700</span><span class="st late">Reminder sent</span></div>
+              <div><span>Acorn Labs</span><span>#INV-1044</span><span>₹60,000</span><span class="st paid">Paid</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow">Features</span><h2>Everything you need to get paid. Nothing you don't.</h2><p>Built for freelancers, consultants and small agencies who'd rather do the work than chase payments.</p></div>
+      <div class="features">
+        <div class="feature"><div class="ico">⚡</div><h3>Invoices in 30 seconds</h3><p>Pick a client, add items, send. Your logo and tax details are filled in automatically.</p></div>
+        <div class="feature"><div class="ico">🔔</div><h3>Automatic reminders</h3><p>Polite follow-ups go out before and after the due date — so you never have to.</p></div>
+        <div class="feature"><div class="ico">💳</div><h3>One-click payments</h3><p>Clients pay by UPI, card or bank transfer straight from the invoice.</p></div>
+        <div class="feature"><div class="ico">🧾</div><h3>GST-ready</h3><p>Correct tax breakdowns on every invoice, plus exports your accountant will love.</p></div>
+        <div class="feature"><div class="ico">📈</div><h3>Cash-flow at a glance</h3><p>See what's paid, what's due and who's late — on a single dashboard.</p></div>
+        <div class="feature"><div class="ico">🔁</div><h3>Recurring billing</h3><p>Retainers and subscriptions invoice themselves every month, on time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Pricing</span><h2>Simple, honest pricing</h2><p>Start free. Upgrade when you grow.</p>
+        <div class="toggle" role="group" aria-label="Billing period">
+          <button aria-pressed="true" data-period="monthly">Monthly</button>
+          <button aria-pressed="false" data-period="yearly">Yearly <span class="save">−20%</span></button>
+        </div>
+      </div>
+      <div class="plans">
+        <div class="plan"><h3>Starter</h3><p class="desc">For your first clients</p><div class="amount" data-monthly="0" data-yearly="0"></div>
+          <ul><li>5 invoices / month</li><li>UPI & card payments</li><li>Email reminders</li></ul><a class="btn btn-dim" href="#">Start free</a></div>
+        <div class="plan pop"><h3>Pro</h3><p class="desc">For busy freelancers</p><div class="amount" data-monthly="499" data-yearly="399"></div>
+          <ul><li>Unlimited invoices</li><li>Automatic reminders</li><li>Recurring billing</li><li>GST reports</li></ul><a class="btn btn-glow" href="#">Try Pro free for 14 days</a></div>
+        <div class="plan"><h3>Team</h3><p class="desc">For small agencies</p><div class="amount" data-monthly="1499" data-yearly="1199"></div>
+          <ul><li>Everything in Pro</li><li>Up to 5 team members</li><li>Client portal</li><li>Priority support</li></ul><a class="btn btn-dim" href="#">Contact sales</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap faq">
+      <div class="head"><span class="eyebrow">FAQ</span><h2>Questions? Answers.</h2></div>
+      <details><summary>Is the free plan really free?</summary><p>Yes. Send up to 5 invoices a month forever, no credit card required.</p></details>
+      <details><summary>How do my clients pay?</summary><p>Every invoice has a secure payment link supporting UPI, cards and net banking. Money goes straight to your bank account.</p></details>
+      <details><summary>Can I use my own branding?</summary><p>Absolutely — add your logo, colors and a custom message to every invoice and email.</p></details>
+      <details><summary>Can I cancel anytime?</summary><p>Yes. Downgrade or cancel in one click. Your data stays yours and can be exported anytime.</p></details>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="final"><h2>Stop chasing payments. <span class="grad">Start getting paid.</span></h2><p>Set up your first invoice in under 2 minutes.</p><a class="btn btn-glow" href="#pricing">Create your free account</a></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© Ledgerly (fictional product)</span><span>Privacy · Terms · Contact</span></div></footer>
+
+<script>
+  const amounts = document.querySelectorAll(".amount");
+  const buttons = document.querySelectorAll(".toggle button");
+  function setPeriod(period) {
+    buttons.forEach((b) => b.setAttribute("aria-pressed", b.dataset.period === period));
+    amounts.forEach((el) => {
+      const v = Number(el.dataset[period]);
+      el.innerHTML = v === 0 ? "Free" : `₹${v.toLocaleString("en-IN")}<small> /month${period === "yearly" ? ", billed yearly" : ""}</small>`;
+    });
+  }
+  buttons.forEach((b) => b.addEventListener("click", () => setPeriod(b.dataset.period)));
+  setPeriod("monthly");
+</script>
+</body>
+</html>

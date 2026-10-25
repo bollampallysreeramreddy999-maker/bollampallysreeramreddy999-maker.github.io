@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Developer & Automation Specialist</title>
+<meta name="description" content="Fast, mobile-first websites, Python automations and AI chatbots for small businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfaf7; --surface: #ffffff; --ink: #14161a; --muted: #5d6470;
+    --line: #e6e3dc; --accent: #2f5bea; --accent-ink: #ffffff; --accent-soft: #e8eeff;
+    --ok: #138a52; --radius: 18px; --shadow: 0 10px 30px -12px rgba(20,22,26,.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115; --surface: #171a21; --ink: #eef0f4; --muted: #9aa3b2;
+      --line: #262b35; --accent: #6d8dff; --accent-ink: #0f1115; --accent-soft: #1c2440;
+      --ok: #3ccf8e; --shadow: 0 10px 30px -12px rgba(0,0,0,.6);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 "DM Sans", system-ui, sans-serif; }
+  h1, h2, h3 { font-family: "Sora", sans-serif; line-height: 1.15; letter-spacing: -.02em; }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 88px 0; }
+  .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .section-head { max-width: 620px; margin-bottom: 40px; }
+  .section-head h2 { font-size: clamp(28px, 4vw, 40px); margin: 8px 0 12px; }
+  .section-head p { color: var(--muted); }
+
+  /* nav */
+  header { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(12px); background: color-mix(in srgb, var(--bg) 82%, transparent); border-bottom: 1px solid var(--line); }
+  nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font: 800 18px "Sora", sans-serif; text-decoration: none; }
+  .logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 28px; list-style: none; padding: 0; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-weight: 500; font-size: 15px; }
+  .nav-links a:hover { color: var(--ink); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 700; font-size: 15px; text-decoration: none; border: 1.5px solid transparent; cursor: pointer; transition: transform .15s, box-shadow .15s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-ghost { border-color: var(--line); background: var(--surface); }
+  .btn-sm { padding: 9px 16px; font-size: 14px; }
+
+  /* hero */
+  .hero { padding: 96px 0 72px; }
+  .status { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 25%, transparent); }
+  .hero h1 { font-size: clamp(38px, 6.4vw, 68px); max-width: 880px; margin: 22px 0 20px; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p.lead { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 620px; }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .promises { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 64px; }
+  .promise { padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  .promise strong { display: block; font: 700 18px "Sora", sans-serif; margin-bottom: 4px; }
+  .promise span { color: var(--muted); font-size: 15px; }
+
+  /* work */
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .preview { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--line); border-bottom: 1px solid var(--line); }
+  .preview iframe { position: absolute; top: 0; left: 0; width: 400%; height: 400%; border: 0; transform: scale(.25); transform-origin: 0 0; pointer-events: none; }
+  .card-body { padding: 22px 24px 26px; }
+  .card-body h3 { font-size: 21px; margin-bottom: 6px; }
+  .card-body p { color: var(--muted); font-size: 15px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .tag { font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .code-preview { background: #12141a; color: #c9d1e3; font: 13px/1.7 ui-monospace, "Cascadia Code", Consolas, monospace; padding: 22px 24px; white-space: pre; overflow: hidden; }
+  .code-preview .k { color: #ff8fb1; } .code-preview .s { color: #a5e3a0; } .code-preview .c { color: #6c7896; }
+  .note { margin-top: 20px; font-size: 14px; color: var(--muted); }
+
+  /* services */
+  .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .service { padding: 30px 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+  .icon { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); margin-bottom: 20px; }
+  .service h3 { font-size: 20px; margin-bottom: 10px; }
+  .service p { color: var(--muted); font-size: 15px; }
+  .service ul { margin-top: 16px; padding-left: 18px; font-size: 15px; }
+  .service li { margin: 4px 0; }
+
+  /* process */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: step; }
+  .step { counter-increment: step; padding-top: 22px; border-top: 2px solid var(--line); }
+  .step::before { content: "0" counter(step); font: 800 14px "Sora", sans-serif; color: var(--accent); }
+  .step h3 { font-size: 18px; margin: 8px 0 6px; }
+  .step p { color: var(--muted); font-size: 15px; }
+
+  /* quote */
+  .quote { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: stretch; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; }
+  .field { margin-bottom: 22px; }
+  .field label.title { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 10px; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .checks { display: grid; gap: 10px; }
+  .check { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; cursor: pointer; font-size: 15px; }
+  .check input { width: 18px; height: 18px; accent-color: var(--accent); }
+  .result { background: var(--accent); color: var(--accent-ink); display: flex; flex-direction: column; justify-content: center; }
+  .result .label { font-size: 14px; font-weight: 700; opacity: .85; text-transform: uppercase; letter-spacing: .1em; }
+  .result .price { font: 800 clamp(36px, 5vw, 52px) "Sora", sans-serif; margin: 8px 0 12px; }
+  .result p { opacity: .9; font-size: 15px; }
+  .result .btn { margin-top: 24px; background: var(--accent-ink); color: var(--accent); align-self: flex-start; }
+
+  /* contact */
+  .contact { text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: 64px 24px; }
+  .contact h2 { font-size: clamp(30px, 4.5vw, 46px); margin: 10px auto 14px; max-width: 700px; }
+  .contact p { color: var(--muted); max-width: 520px; margin: 0 auto; }
+  .contact .ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 30px; }
+  .platforms { display: flex; justify-content: center; gap: 22px; margin-top: 28px; font-weight: 500; font-size: 15px; }
+  .platforms a { color: var(--muted); }
+  footer { padding: 40px 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 900px) {
+    .services, .steps, .promises { grid-template-columns: 1fr 1fr; }
+    .quote { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    section { padding: 64px 0; }
+    .hero { padding: 64px 0 48px; }
+    .work-grid, .services, .steps, .promises { grid-template-columns: 1fr; }
+    .promises { margin-top: 44px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a class="logo" href="#top"><span data-bind="initials"></span><span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#quote">Pricing</a></li>
+    </ul>
+    <a class="btn btn-primary btn-sm" href="#contact">Hire me</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <span class="status">Available for new projects</span>
+      <h1>Websites & automations that bring small businesses <em>more customers.</em></h1>
+      <p class="lead">I'm <strong data-bind="name"></strong>, a <span data-bind="role"></span>. I build fast, mobile-first websites, Python scripts that save hours of manual work, and AI chatbots that answer customers 24/7.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#work">See my work →</a>
+        <a class="btn btn-ghost" href="#quote">Estimate your price</a>
+      </div>
+      <div class="promises">
+        <div class="promise"><strong>First preview in 48h</strong><span>See your site before you commit to anything.</span></div>
+        <div class="promise"><strong>Mobile-first</strong><span>Most of your customers are on their phone. So is your site.</span></div>
+        <div class="promise"><strong>You own the code</strong><span>Full source files and simple instructions included.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Selected work</span>
+        <h2>Recent builds</h2>
+        <p>Click any project to open the live site. Try them on your phone too.</p>
+      </div>
+      <div class="work-grid">
+        <a class="card" href="projects/clinic/index.html">
+          <div class="preview"><iframe src="projects/clinic/index.html" title="Dental clinic preview" loading="lazy" tabindex="-1"></iframe></div>
+          <div class="card-body">
+            <h3>SmileCare Dental Clinic</h3>
+            <p>Local clinic website with a WhatsApp appointment form, timings, services and a sticky "Book now" bar on mobile.</p>
+            <div class="tags"><span class="tag">Local business</span><span class="tag">WhatsApp booking</span><span class="tag">Responsive</span></div>
+          </div>
+        </a>
+        <a class="card" href="projects/cafe/index.html">
+          <div class="preview"><iframe src="projects/cafe/index.html" title="Café preview" loading="lazy" tabindex="-1"></iframe></div>
+          <div class="card-body">
+            <h3>Monsoon Brew Café</h3>
+            <p>Warm, editorial café site with a tabbed menu, opening hours and a table-reservation form.</p>
+            <div class="tags"><span class="tag">Restaurant</span><span class="tag">Interactive menu</span><span class="tag">Reservations</span></div>
+          </div>
+        </a>
+        <a class="card" href="projects/saas/index.html">
+          <div class="preview"><iframe src="projects/saas/index.html" title="SaaS landing page preview" loading="lazy" tabindex="-1"></iframe></div>
+          <div class="card-body">
+            <h3>Ledgerly — SaaS landing page</h3>
+            <p>Conversion-focused product page with feature grid, monthly/yearly pricing toggle and FAQ.</p>
+            <div class="tags"><span class="tag">Startup</span><span class="tag">Pricing toggle</span><span class="tag">Landing page</span></div>
+          </div>
+        </a>
+        <a class="card" data-href="scraperRepo">
+          <div class="preview code-preview"><span class="c"># 1,000 products · 50 pages · 1 command</span>
+<span class="k">def</span> scrape_page(url):
+    soup = BeautifulSoup(fetch(url), <span class="s">"html.parser"</span>)
+    <span class="k">for</span> card <span class="k">in</span> soup.select(<span class="s">"article.product_pod"</span>):
+        <span class="k">yield</span> {
+            <span class="s">"title"</span>: card.h3.a[<span class="s">"title"</span>],
+            <span class="s">"price"</span>: parse_price(card),
+            <span class="s">"rating"</span>: parse_rating(card),
+        }
+<span class="c">$ python scrape_books.py --out books.xlsx</span>
+<span class="c">✔ Saved 1000 rows</span></div>
+          <div class="card-body">
+            <h3>Product data scraper</h3>
+            <p>Python script that collects a full product catalogue across 50 pages into a clean Excel file, with retries and polite rate-limiting.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Web scraping</span><span class="tag">Excel export</span></div>
+          </div>
+        </a>
+      </div>
+      <p class="note">Projects shown are concept builds for fictional businesses, created to demonstrate my work.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Services</span>
+        <h2>What I can do for you</h2>
+        <p>Focused services, clear deliverables, no jargon.</p>
+      </div>
+      <div class="services">
+        <div class="service">
+          <div class="icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 21h8"/></svg></div>
+          <h3>Websites & landing pages</h3>
+          <p>A professional site that loads fast and turns visitors into calls, bookings and sales.</p>
+          <ul><li>Business sites & landing pages</li><li>WhatsApp, booking & contact forms</li><li>SEO basics & Google Maps</li></ul>
+        </div>
+        <div class="service">
+          <div class="icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 4l-4 16"/></svg></div>
+          <h3>Python automation & scraping</h3>
+          <p>Stop copying data by hand. Get clean spreadsheets and scripts that run on their own.</p>
+          <ul><li>Public data → Excel / CSV</li><li>Report & spreadsheet automation</li><li>API integrations</li></ul>
+        </div>
+        <div class="service">
+          <div class="icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></div>
+          <h3>AI chatbots</h3>
+          <p>A website assistant that answers customer questions 24/7 and collects leads while you sleep.</p>
+          <ul><li>Trained on your FAQ & website</li><li>Lead capture (name, phone, email)</li><li>Handoff to WhatsApp or email</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Process</span>
+        <h2>Simple from start to launch</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Tell me what you need</h3><p>A short chat about your business, goals and deadline.</p></div>
+        <div class="step"><h3>First preview in 48h</h3><p>You see a working version, not a sketch.</p></div>
+        <div class="step"><h3>Refine together</h3><p>We polish the details until you're happy.</p></div>
+        <div class="step"><h3>Launch & handover</h3><p>I help you go live and hand over everything.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quote">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Pricing</span>
+        <h2>Estimate your website</h2>
+        <p>Pick what you need to see a ballpark price. Final quotes depend on your exact requirements.</p>
+      </div>
+      <div class="quote">
+        <form class="panel" id="quote-form">
+          <div class="field">
+            <label class="title" for="pages"><span>Number of pages</span><output id="pages-out">1</output></label>
+            <input type="range" id="pages" name="pages" min="1" max="10" value="1">
+          </div>
+          <div class="field">
+            <span class="title" style="display:block;font-weight:700;margin-bottom:10px">Extras</span>
+            <div class="checks">
+              <label class="check"><input type="checkbox" name="form"> Booking / enquiry form</label>
+              <label class="check"><input type="checkbox" name="maps"> WhatsApp button & Google Map</label>
+              <label class="check"><input type="checkbox" name="seo"> Google search setup (SEO basics)</label>
+              <label class="check"><input type="checkbox" name="chatbot"> AI chatbot</label>
+              <label class="check"><input type="checkbox" name="rush"> Express delivery (48 hours)</label>
+            </div>
+          </div>
+        </form>
+        <div class="panel result" aria-live="polite">
+          <span class="label">Estimated price</span>
+          <div class="price" id="quote-price">—</div>
+          <p id="quote-note">Includes design, development, mobile testing and launch help.</p>
+          <a class="btn" data-href="whatsappQuote">Get an exact quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <span class="eyebrow">Let's work together</span>
+        <h2>Have a project in mind? Let's talk.</h2>
+        <p>Tell me about your business and what you need. I usually reply within a few hours.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" data-href="whatsapp">Message on WhatsApp</a>
+          <a class="btn btn-ghost" data-href="email">Send an email</a>
+        </div>
+        <div class="platforms">
+          <a data-href="fiverr" target="_blank" rel="noopener">Fiverr</a>
+          <a data-href="upwork" target="_blank" rel="noopener">Upwork</a>
+          <a data-href="github" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© <span id="year"></span> <span data-bind="name"></span> · <span data-bind="role"></span></footer>
+
+<script>
+  // ── Edit your details here — everything on the page updates from this ──
+  const PROFILE = {
+    name: "Sreeram Reddy",
+    role: "web developer & automation specialist",
+    email: "bollampallysreeramreddy999@gmail.com",
+    whatsapp: "",                        // country code + number, digits only; "" hides WhatsApp buttons
+    fiverr: "",                          // "" hides the link
+    upwork: "",
+    github: "https://github.com/bollampallysreeramreddy999-maker",
+    scraperRepo: "https://github.com/bollampallysreeramreddy999-maker/book-scraper",
+  };
+
+  // Contact buttons use WhatsApp when a number is set, otherwise fall back to email
+  const contact = (text) => PROFILE.whatsapp
+    ? `https://wa.me/${PROFILE.whatsapp}?text=${encodeURIComponent(text)}`
+    : `mailto:${PROFILE.email}?subject=${encodeURIComponent("Project enquiry")}&body=${encodeURIComponent(text)}`;
+  const LINKS = {
+    whatsapp: PROFILE.whatsapp && contact(`Hi ${PROFILE.name}, I saw your portfolio and I'd like to discuss a project.`),
+    email: `mailto:${PROFILE.email}?subject=${encodeURIComponent("Project enquiry")}`,
+    fiverr: PROFILE.fiverr, upwork: PROFILE.upwork, github: PROFILE.github, scraperRepo: PROFILE.scraperRepo,
+  };
+  const initials = PROFILE.name.split(/\s+/).map((w) => w[0]).join("").toUpperCase();
+
+  document.querySelectorAll("[data-bind]").forEach((el) => {
+    el.textContent = el.dataset.bind === "initials" ? initials : PROFILE[el.dataset.bind];
+  });
+  document.querySelectorAll("[data-href]").forEach((el) => {
+    const key = el.dataset.href;
+    if (LINKS[key]) el.href = LINKS[key];
+    else if (key in LINKS) el.remove(); // profile link left blank → hide it
+  });
+  if (!PROFILE.whatsapp) document.querySelector('[data-href="email"]').className = "btn btn-primary";
+  document.getElementById("year").textContent = new Date().getFullYear();
+  document.title = `${PROFILE.name} — Web Developer & Automation Specialist`;
+
+  // ── Quote estimator ──
+  // Returns the estimated price in INR (a number), or null to show "custom quote".
+  // opts: { pages: 1–10, form, maps, seo, chatbot, rush }  (the extras are booleans)
+  function estimateQuote(opts) {
+    // TODO(you): put your own pricing here.
+    return null;
+  }
+
+  const form = document.getElementById("quote-form");
+  const priceEl = document.getElementById("quote-price");
+  const quoteBtn = document.querySelector('[data-href="whatsappQuote"]');
+  function updateQuote() {
+    const fd = new FormData(form);
+    const opts = { pages: Number(fd.get("pages")) };
+    ["form", "maps", "seo", "chatbot", "rush"].forEach((k) => (opts[k] = fd.has(k)));
+    document.getElementById("pages-out").textContent = opts.pages;
+
+    const price = estimateQuote(opts);
+    priceEl.textContent = price == null ? "Custom quote" : "₹" + Math.round(price).toLocaleString("en-IN");
+    const extras = ["form", "maps", "seo", "chatbot", "rush"].filter((k) => opts[k]).join(", ") || "none";
+    quoteBtn.href = contact(`Hi ${PROFILE.name}, I'd like a quote for a ${opts.pages}-page website. Extras: ${extras}.` +
+      (price == null ? "" : ` Your estimator showed ₹${Math.round(price).toLocaleString("en-IN")}.`));
+  }
+  form.addEventListener("input", updateQuote);
+  updateQuote();
+</script>
+</body>
+</html>
