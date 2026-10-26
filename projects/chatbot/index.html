@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Chat Assistant — Demo</title>
+<meta name="description" content="A website chat assistant that answers customer questions 24/7, captures leads and hands off to WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #f4f7f7; --ink: #0d2b2f; --muted: #557277; --brand: #0e8a87; --soft: #e2f4f3; --line: #dcebeb; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--bg); color: var(--ink); font: 400 17px/1.6 "DM Sans", system-ui, sans-serif; min-height: 100vh; }
+  .demo-bar { background: var(--ink); color: #cfe3e3; font-size: 13px; text-align: center; padding: 8px 16px; }
+  .demo-bar a { color: #fff; font-weight: 700; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 72px 20px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: start; }
+  .eyebrow { font: 800 13px "Sora", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); }
+  h1 { font: 800 clamp(36px, 5vw, 56px)/1.08 "Sora", sans-serif; letter-spacing: -.03em; margin: 16px 0 18px; }
+  h1 em { font-style: normal; color: var(--brand); }
+  .lead { font-size: 19px; color: var(--muted); max-width: 520px; }
+  ul.features { list-style: none; padding: 0; margin: 30px 0; display: grid; gap: 14px; }
+  .features li { display: flex; gap: 14px; align-items: flex-start; }
+  .features .i { flex: none; width: 40px; height: 40px; border-radius: 12px; background: var(--soft); display: grid; place-items: center; font-size: 19px; }
+  .features b { display: block; }
+  .features span { color: var(--muted); font-size: 15px; }
+  .try { background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: 26px; }
+  .try h2 { font: 700 20px "Sora", sans-serif; margin-bottom: 6px; }
+  .try p { color: var(--muted); font-size: 15px; margin-bottom: 16px; }
+  .prompts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .prompts button { font: inherit; font-size: 14px; border: 1.5px solid var(--line); background: var(--bg); border-radius: 999px; padding: 8px 14px; cursor: pointer; color: var(--ink); }
+  .prompts button:hover { border-color: var(--brand); color: var(--brand); }
+  .note { margin-top: 18px; font-size: 13px; color: var(--muted); border-top: 1px dashed var(--line); padding-top: 14px; }
+  @media (max-width: 900px) { .wrap { grid-template-columns: 1fr; padding: 48px 20px 120px; } }
+</style>
+</head>
+<body>
+<div class="demo-bar">Demo chat assistant for a fictional dental clinic · <a href="../../index.html">← Back to portfolio</a></div>
+
+<main class="wrap">
+  <section>
+    <span class="eyebrow">AI website assistant</span>
+    <h1>Answer every customer, <em>24/7</em> — even while you sleep.</h1>
+    <p class="lead">A chat assistant that lives on your website, answers questions about your services, prices and timings, collects leads, and hands serious customers to you on WhatsApp.</p>
+    <ul class="features">
+      <li><span class="i">💬</span><div><b>Instant answers</b><span>Trained on your FAQs, prices and policies, so it only says what's true about your business.</span></div></li>
+      <li><span class="i">📇</span><div><b>Captures leads</b><span>Collects names, phone numbers and emails from interested visitors.</span></div></li>
+      <li><span class="i">📲</span><div><b>WhatsApp handoff</b><span>One tap sends the customer to your WhatsApp with their question pre-filled.</span></div></li>
+      <li><span class="i">🧩</span><div><b>Works on any website</b><span>One line of code, on WordPress, Wix, Shopify or custom sites. Matches your brand colors.</span></div></li>
+    </ul>
+  </section>
+
+  <section class="try">
+    <h2>Try it now →</h2>
+    <p>The assistant is open in the corner. Ask anything a patient might ask, or tap a question:</p>
+    <div class="prompts">
+      <button>What are your timings?</button>
+      <button>Does root canal hurt?</button>
+      <button>How much are braces?</button>
+      <button>I have a toothache, can I come today?</button>
+      <button>Where are you located?</button>
+      <button>My number is 98765 43210</button>
+    </div>
+    <p class="note">Demo mode: answers come from the clinic's FAQ list in your browser. Client versions connect to an AI model (Claude) through a secure server, so they understand any wording and hold a natural conversation.</p>
+  </section>
+</main>
+
+<script>window.ChatWidgetConfig = { openOnLoad: true };</script>
+<script src="../../assets/smilecare-chat.js"></script>
+<script src="../../assets/chat-widget.js"></script>
+<script>
+  document.querySelectorAll(".prompts button").forEach((b) =>
+    b.addEventListener("click", () => { window.ChatWidget.open(); window.ChatWidget.send(b.textContent); }));
+  // #autoplay plays a short sample conversation (used for screenshots)
+  if (location.hash === "#autoplay") (async () => {
+    for (const q of ["Does root canal hurt?", "Do you have EMI?", "Book an appointment"]) await window.ChatWidget.send(q);
+  })();
+</script>
+</body>
+</html>
