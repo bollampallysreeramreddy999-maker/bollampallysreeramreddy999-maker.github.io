@@ -34,7 +34,7 @@
   .btn-brand:hover { background: var(--brand-dark); }
   .btn-outline { background: var(--surface); border: 1.5px solid var(--line); }
 
-  .hero { padding: 72px 0; display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
+  .hero { padding: 72px 20px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
   .pill { display: inline-flex; gap: 8px; align-items: center; background: var(--brand-soft); color: var(--brand-dark); font-weight: 700; font-size: 13px; padding: 7px 14px; border-radius: 999px; }
   .hero h1 { font-size: clamp(36px, 5.5vw, 58px); margin: 18px 0; }
   .hero h1 span { color: var(--brand); }
@@ -105,7 +105,7 @@
   }
   @media (max-width: 640px) {
     .nav-links, nav .btn { display: none; }
-    .hero { padding: 44px 0; }
+    .hero { padding: 44px 20px; }
     section { padding: 56px 0; }
     .grid-3, .row, .doctor ul { grid-template-columns: 1fr; }
     body { padding-bottom: 76px; }
@@ -243,12 +243,16 @@
   // Opening hours: [day, open, close] in 24h; null = closed
   const HOURS = [["Sunday", null], ["Monday", 10, 20], ["Tuesday", 10, 20], ["Wednesday", 10, 20],
                  ["Thursday", 10, 20], ["Friday", 10, 20], ["Saturday", 10, 17]];
-  const fmt = (h) => `${((h + 11) % 12) + 1}${h < 12 ? " AM" : " PM"}`;
+  // Hours are decimals (9.5 = 9:30). A string instead of a number is shown as-is (e.g. "Please call").
+  const fmt = (h) => {
+    const hh = Math.floor(h), mm = Math.round((h - hh) * 60);
+    return `${((hh + 11) % 12) + 1}${mm ? ":" + String(mm).padStart(2, "0") : ""}${hh < 12 ? " AM" : " PM"}`;
+  };
   const now = new Date(), today = now.getDay();
   document.getElementById("hours").innerHTML = HOURS.map(([d, o, c], i) =>
-    `<tr class="${i === today ? "today" : ""}"><td>${d}</td><td>${o == null ? "Closed" : `${fmt(o)} – ${fmt(c)}`}</td></tr>`).join("");
+    `<tr class="${i === today ? "today" : ""}"><td>${d}</td><td>${o == null ? "Closed" : typeof o === "string" ? o : `${fmt(o)} – ${fmt(c)}`}</td></tr>`).join("");
   const [, o, c] = HOURS[today], h = now.getHours() + now.getMinutes() / 60;
-  const open = o != null && h >= o && h < c;
+  const open = typeof o === "number" && h >= o && h < c;
   const badge = document.getElementById("open-now");
   badge.className = "open-now " + (open ? "yes" : "no");
   badge.textContent = open ? "● Open now" : "● Closed now";
