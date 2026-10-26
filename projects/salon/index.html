@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Velvet & Vine Salon — Hair, Skin & Bridal</title>
+<meta name="description" content="Hair, skin and bridal studio. See prices and book your appointment on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #fbf6f3; --paper: #fff; --ink: #2a1d22; --muted: #7c6970; --line: #ecdfe0; --rose: #b5576c; --rose-dark: #94415a; --gold: #c99a5b; --blush: #f6e6e8; }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font: 400 16px/1.65 "Jost", system-ui, sans-serif; }
+  h1, h2, h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 700; line-height: 1.05; }
+  a { color: inherit; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+  .demo-bar { background: var(--ink); color: #eadde0; font-size: 13px; text-align: center; padding: 8px 16px; }
+  .demo-bar a { color: #fff; font-weight: 600; }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 24px 0; }
+  .logo { font: 700 26px "Cormorant Garamond", serif; text-decoration: none; letter-spacing: .02em; }
+  .logo em { color: var(--rose); font-style: italic; }
+  .nav-links { display: flex; gap: 30px; list-style: none; padding: 0; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
+  .nav-links a { text-decoration: none; color: var(--muted); }
+  .nav-links a:hover { color: var(--rose); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 26px; border-radius: 999px; font: 600 15px "Jost", sans-serif; text-decoration: none; border: 0; cursor: pointer; letter-spacing: .02em; }
+  .btn-rose { background: var(--rose); color: #fff; }
+  .btn-rose:hover { background: var(--rose-dark); }
+  .btn-line { border: 1.5px solid var(--ink); background: transparent; }
+
+  .hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; padding: 40px 20px 80px; }
+  .kicker { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .hero h1 { font-size: clamp(50px, 8vw, 96px); margin: 14px 0 20px; }
+  .hero h1 em { color: var(--rose); font-weight: 500; }
+  .hero p { font-size: 19px; color: var(--muted); max-width: 470px; }
+  .hero .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .offer { display: inline-flex; gap: 10px; align-items: center; margin-top: 28px; background: var(--paper); border: 1px dashed var(--gold); border-radius: 14px; padding: 12px 18px; font-size: 15px; }
+  .offer b { color: var(--rose); }
+  .art { position: relative; aspect-ratio: 4 / 5; max-width: 440px; justify-self: end; width: 100%; }
+  .arch { position: absolute; inset: 0; border-radius: 220px 220px 24px 24px; background: linear-gradient(170deg, #e9b9c3, var(--rose) 70%); overflow: hidden; }
+  .arch svg { position: absolute; inset: auto 0 0 0; width: 100%; }
+  .badge { position: absolute; left: -24px; bottom: 40px; background: var(--paper); border-radius: 18px; padding: 14px 18px; box-shadow: 0 18px 40px -20px rgba(42,29,34,.45); font-size: 14px; }
+  .badge strong { display: block; font: 700 24px "Cormorant Garamond", serif; color: var(--rose); }
+
+  section { padding: 90px 0; }
+  .head { text-align: center; max-width: 620px; margin: 0 auto 44px; }
+  .head h2 { font-size: clamp(38px, 5vw, 58px); margin: 10px 0 12px; }
+  .head p { color: var(--muted); }
+  .tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 30px; }
+  .tab { padding: 10px 20px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--paper); font: 500 15px "Jost", sans-serif; cursor: pointer; color: var(--ink); }
+  .tab[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .prices { max-width: 760px; margin: 0 auto; background: var(--paper); border-radius: 24px; padding: 14px 32px; border: 1px solid var(--line); }
+  .price-row { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 18px 0; border-bottom: 1px dashed var(--line); }
+  .price-row:last-child { border: 0; }
+  .price-row h3 { font-size: 24px; }
+  .price-row .amt { font: 700 22px "Cormorant Garamond", serif; color: var(--rose); }
+  .price-row p { grid-column: 1 / -1; color: var(--muted); font-size: 15px; }
+
+  .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .member { background: var(--paper); border-radius: 24px; overflow: hidden; border: 1px solid var(--line); }
+  .member .pic { aspect-ratio: 1; display: grid; place-items: center; font: 700 64px "Cormorant Garamond", serif; color: rgba(255,255,255,.9); }
+  .member:nth-child(1) .pic { background: linear-gradient(160deg, #d98fa0, var(--rose)); }
+  .member:nth-child(2) .pic { background: linear-gradient(160deg, #e3c08f, var(--gold)); }
+  .member:nth-child(3) .pic { background: linear-gradient(160deg, #a9849a, #6e4f60); }
+  .member div:last-child { padding: 20px 22px 24px; }
+  .member h3 { font-size: 26px; }
+  .member span { color: var(--muted); font-size: 15px; }
+
+  .book { background: var(--ink); color: #f3e9eb; border-radius: 36px; padding: 56px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; }
+  .book h2 { font-size: clamp(38px, 5vw, 56px); color: #fff; }
+  .book .info { margin-top: 24px; display: grid; gap: 14px; font-size: 15px; color: #d8c8cc; }
+  .book .info b { display: block; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; font-size: 12px; }
+  form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: start; }
+  form label { font-size: 13px; font-weight: 500; display: flex; flex-direction: column; gap: 6px; color: #eadde0; }
+  form .full { grid-column: 1 / -1; }
+  form input, form select { padding: 13px 14px; border-radius: 12px; border: 1px solid #4a3a40; background: #3a2b31; color: #fff; font: inherit; font-size: 15px; }
+  form input:focus, form select:focus { outline: 2px solid var(--gold); border-color: transparent; }
+  form .btn { grid-column: 1 / -1; margin-top: 6px; }
+  footer { padding: 44px 0; text-align: center; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 900px) {
+    .hero, .book { grid-template-columns: 1fr; }
+    .art { justify-self: center; max-width: 340px; }
+    .team { grid-template-columns: 1fr 1fr; }
+    .book { padding: 36px 24px; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    section { padding: 60px 0; }
+    .team, form { grid-template-columns: 1fr; }
+    .badge { left: 0; }
+    .prices { padding: 6px 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="demo-bar">Concept website for a fictional salon · <a href="../../index.html">← Back to portfolio</a></div>
+
+<header class="wrap">
+  <nav>
+    <a class="logo" href="#">Velvet <em>&amp;</em> Vine</a>
+    <ul class="nav-links"><li><a href="#prices">Services</a></li><li><a href="#team">Stylists</a></li><li><a href="#book">Visit</a></li></ul>
+    <a class="btn btn-rose" href="#book">Book now</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <span class="kicker">Hair · Skin · Bridal</span>
+      <h1>Feel like <em>yourself,</em> only more.</h1>
+      <p>Precision cuts, glowing skin and bridal looks you'll love in every photo, in a calm studio where you're never rushed.</p>
+      <div class="ctas"><a class="btn btn-rose" href="#book">Book on WhatsApp</a><a class="btn btn-line" href="#prices">See prices</a></div>
+      <div class="offer">✨ <span><b>20% off</b> your first visit, just mention this website</span></div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="arch">
+        <svg viewBox="0 0 400 300" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".9">
+          <path d="M200 40c-60 0-95 45-95 100 0 40 20 70 20 110M200 40c60 0 95 45 95 100 0 40-20 70-20 110"/>
+          <path d="M150 120c20-30 80-30 100 0M160 300c10-40 70-40 80 0"/>
+          <circle cx="200" cy="150" r="48"/>
+        </svg>
+      </div>
+      <div class="badge"><strong>Open 7 days</strong>10 AM – 9 PM</div>
+    </div>
+  </div>
+
+  <section id="prices">
+    <div class="wrap">
+      <div class="head"><span class="kicker">Services & prices</span><h2>Simple, honest pricing</h2><p>Prices are a starting point; your stylist confirms the final price before starting.</p></div>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="prices" id="price-list" role="tabpanel"></div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="wrap">
+      <div class="head"><span class="kicker">Meet the team</span><h2>Your stylists</h2></div>
+      <div class="team">
+        <div class="member"><div class="pic">MK</div><div><h3>Meera K.</h3><span>Senior stylist · cuts & colour</span></div></div>
+        <div class="member"><div class="pic">RS</div><div><h3>Ritu S.</h3><span>Skin specialist · facials & peels</span></div></div>
+        <div class="member"><div class="pic">AJ</div><div><h3>Anjali J.</h3><span>Bridal & party makeup</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="wrap">
+      <div class="book">
+        <div>
+          <span class="kicker">Book your visit</span>
+          <h2>Your chair is waiting.</h2>
+          <div class="info">
+            <div><b>Address</b>2nd floor, Lotus Plaza, Banjara Hills, Hyderabad</div>
+            <div><b>Hours</b>Every day · 10 AM – 9 PM</div>
+            <div><b>Call</b><a href="tel:+910000000000">+91 00000 00000</a></div>
+          </div>
+        </div>
+        <form id="book-form">
+          <label class="full">Your name<input name="name" required autocomplete="name" placeholder="Your name"></label>
+          <label class="full">Service<select name="service" id="service"></select></label>
+          <label>Date<input type="date" name="date" required></label>
+          <label>Time
+            <select name="time"><option>Morning (10–1)</option><option>Afternoon (1–5)</option><option>Evening (5–9)</option></select>
+          </label>
+          <button class="btn btn-rose" type="submit">Confirm on WhatsApp</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>© Velvet & Vine Salon (fictional) · Made with care in Hyderabad</footer>
+
+<script>
+  const SALON_WHATSAPP = "910000000000"; // salon's number: country code + digits
+
+  // service, price (₹ "from"), description
+  const SERVICES = {
+    "Hair": [
+      ["Haircut & styling", 499, "Consultation, wash, precision cut and blow-dry."],
+      ["Global hair colour", 2499, "Ammonia-free colour, any length."],
+      ["Keratin smoothening", 4999, "Frizz-free, glossy hair for up to 4 months."],
+    ],
+    "Skin": [
+      ["Signature glow facial", 1299, "Deep cleanse, exfoliation and hydrating mask."],
+      ["Clean-up", 699, "Quick refresh for oily or tired skin."],
+      ["Full arms & legs waxing", 899, "Gentle rica wax."],
+    ],
+    "Bridal": [
+      ["Bridal makeup (HD)", 14999, "Trial session, HD makeup, hairstyling and draping."],
+      ["Engagement / party makeup", 4999, "Long-lasting look with hairstyling."],
+      ["Pre-bridal package", 9999, "3 sessions of facials, hair spa and grooming."],
+    ],
+  };
+
+  const tabs = document.getElementById("tabs"), list = document.getElementById("price-list");
+  function show(cat) {
+    tabs.querySelectorAll(".tab").forEach((t) => t.setAttribute("aria-selected", t.textContent === cat));
+    list.innerHTML = SERVICES[cat].map(([n, p, d]) =>
+      `<div class="price-row"><h3>${n}</h3><span class="amt">from ₹${p.toLocaleString("en-IN")}</span><p>${d}</p></div>`).join("");
+  }
+  Object.keys(SERVICES).forEach((cat) => {
+    const b = document.createElement("button");
+    b.className = "tab"; b.role = "tab"; b.textContent = cat;
+    b.onclick = () => show(cat);
+    tabs.append(b);
+  });
+  show("Hair");
+  document.getElementById("service").innerHTML =
+    Object.values(SERVICES).flat().map(([n]) => `<option>${n}</option>`).join("");
+
+  const d = new Date();
+  document.querySelector('[name="date"]').min = new Date(d - d.getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+  document.getElementById("book-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const f = Object.fromEntries(new FormData(e.target));
+    const msg = `Hi Velvet & Vine! I'd like to book.\n\nName: ${f.name}\nService: ${f.service}\nDate: ${f.date}\nTime: ${f.time}`;
+    window.open(`https://wa.me/${SALON_WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+  });
+</script>
+</body>
+</html>
